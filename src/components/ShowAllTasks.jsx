@@ -17,14 +17,10 @@ const ShowAllTasks = ({path}) => {
 
   const dispatch = useDispatch();
 
-  const getTasks = ()=>{
-    const tasks = useSelector((state) => state.tasks.tasksArray.tasks);
-    return tasks;
-  }
+  const tasks = useSelector((state) => state.tasks.tasksArray.tasks);
   const isRefresh = useSelector((state)=>state?.tasks?.isRefresh);
 
   useEffect(() => {
-    const tasks = getTasks();
     if (tasks?.length > 0) {
       setAllTasks(tasks);
     }
