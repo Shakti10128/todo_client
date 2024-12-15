@@ -28,7 +28,7 @@ const ShowAllTasks = ({path}) => {
     if (tasks?.length > 0) {
       setAllTasks(tasks);
     }
-  }, [tasks,isRefresh]); // Dependency array ensures this effect runs only when tasks change
+  }, [isRefresh]); // Dependency array ensures this effect runs only when tasks change
 
   const deleteTaskHandler = async(task)=>{
     await deteleTask(task);
