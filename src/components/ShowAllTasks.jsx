@@ -38,6 +38,7 @@ const ShowAllTasks = ({path}) => {
   const updateTaskHandler = async()=>{
     await updateTask(updatedTask,status);
     setIsUpdate(false);
+    dispatch(toggleRefresh())
   }
 
   // Handle task status update
