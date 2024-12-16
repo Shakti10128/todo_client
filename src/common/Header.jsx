@@ -7,9 +7,23 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
     const [isOpen,setIsOpen] = useState(true);
+    const [navbar,setNavbar] = useState();
+    const [isNavbar,setIsNavbar] = useState(false);
+
 
     const toggleIsMenu = ()=>{
         setIsOpen((prev)=> !prev);
+    }
+
+    const manageNavbarHighlight = (nav)=>{
+        if(nav === ""){
+            setNavbar(undefined);
+            setIsNavbar(false);
+        }
+        else{
+            setIsNavbar(true);
+            setNavbar(nav);
+        }
     }
 
 
@@ -18,20 +32,27 @@ const Header = () => {
         {/* Todo icon */}
         <div className=''>
             <Link to={"/"}>
-                <h1 className='p-2 text-white font-semibold text-2xl cursor-pointer'>
+                <h1 className='p-2 text-white font-semibold text-2xl cursor-pointer'
+                onClick={()=>manageNavbarHighlight("")}>
                     YOUR TODO
                 </h1>
             </Link>
         </div>
         <div className='hidden md:flex h-full justify-center w-1/2 items-center text-white font-semibold'>
             <Link to={"/pending-tasks"}>
-                <h1 className='mx-4 p-2 hover:border-2 rounded-md cursor-pointer'>Pending Tasks</h1>
+                <h1 className={`mx-4 p-2 hover:border-2 rounded-md cursor-pointer ${isNavbar && navbar === 'Pending Tasks' ? "border-2 rounded-md" : ""}`} onClick={()=>manageNavbarHighlight("Pending Tasks")}>
+                    Pending Tasks
+                </h1>
             </Link>
             <Link to={"/in-progress-tasks"}>
-                <h1 className='mx-4 p-2 hover:border-2 rounded-md cursor-pointer'>In-Progress Tasks</h1>
+                <h1 className={`mx-4 p-2 hover:border-2 rounded-md cursor-pointer ${isNavbar && navbar === 'In-Progress Tasks' ? "border-2 rounded-md" : ""}`} onClick={()=>manageNavbarHighlight("In-Progress Tasks")}>
+                    In-Progress Tasks
+                </h1>
             </Link>
             <Link to={"/completed-tasks"}>
-                <h1 className='mx-4 p-2 hover:border-2 rounded-md cursor-pointer'>Completed Tasks</h1>
+                <h1 className={`mx-4 p-2 hover:border-2 rounded-md cursor-pointer ${isNavbar && navbar === 'Completed Tasks' ? "border-2 rounded-md" : ""}`} onClick={()=>manageNavbarHighlight("Completed Tasks")}>
+                    Completed Tasks
+                </h1>
             </Link>
         </div>
         {/* for mobile size */}
